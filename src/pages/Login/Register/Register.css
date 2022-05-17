@@ -1,0 +1,18 @@
+.form-container {
+    margin: 0 auto;
+    width: 50%;
+}
+
+.register-container input {
+    display: block;
+    padding: 15px;
+    margin-bottom: 20px;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.register-container button {
+    width: 100%;
+    border: none;
+    padding: 10px;
+}
