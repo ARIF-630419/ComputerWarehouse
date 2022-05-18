@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const UpdateInventory = () => {
     const { _id } = useParams();
@@ -25,6 +25,12 @@ const UpdateInventory = () => {
     }
     return (
         <div className='container mt-5'>
+            <div className='mb-5'>
+                <Link to="/manageItem">
+                    <button className='btn btn-primary'>Go to Manage Inventories</button>
+                </Link>
+            </div>
+
             <div className="card" style={{ width: "65rem" }}>
                 <img src={inventory.image} className="card-img-top" alt="img" />
                 <div className="card-body">
@@ -43,7 +49,7 @@ const UpdateInventory = () => {
                 <form onSubmit={handelQuantity}>
                     <input className='d-block w-50 mx-auto m-2' type="number" name="quantity" placeholder='Enter quantity.' required />
                     <br />
-                    <input className='d-block w-50 mx-auto' type="submit" value="Add Quantity" />
+                    <input className='d-block w-50 mx-auto mb-5' type="submit" value="Add Quantity" />
                 </form>
             </div>
         </div>

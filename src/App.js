@@ -8,6 +8,9 @@ import Register from './pages/Login/Register/Register';
 import NotFound from './pages/Shared/NotFound/NotFound'
 import RequireAuth from './pages/Login/RequireAuth/RequireAuth';
 import UpdateInventory from './pages/UpdataInventory/UpdateInventory';
+import ManageItem from './pages/ManageItem/ManageItem';
+import AddItem from './pages/AddItem/AddItem';
+import MyItem from './pages/MyItem/MyItem';
 function App() {
   return (
     <div>
@@ -19,6 +22,21 @@ function App() {
         <Route path='/inventory/:_id' element={
           <RequireAuth>
             <UpdateInventory></UpdateInventory>
+          </RequireAuth>
+        }></Route>
+        <Route path='/manageItem' element={
+          <RequireAuth>
+            <ManageItem></ManageItem>
+          </RequireAuth>
+        }></Route>
+        <Route path='/addItem' element={
+          <RequireAuth>
+            <AddItem></AddItem>
+          </RequireAuth>
+        }></Route>
+        <Route path='/myItem' element={
+          <RequireAuth>
+            <MyItem></MyItem>
           </RequireAuth>
         }></Route>
         <Route path='/login' element={<Login></Login>}></Route>
