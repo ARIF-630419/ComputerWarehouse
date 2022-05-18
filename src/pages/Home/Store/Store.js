@@ -1,13 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import "../Store/Store.css"
 
 const Store = ({ store }) => {
-    const { name, image, description, price, quantity, supplierName } = store;
+    const { _id, name, image, description, price, quantity, supplierName } = store;
+    const navigate = useNavigate();
+
+    const navigateToInventoryDetail = id => {
+        navigate(`/inventory/${id}`);
+    }
     return (
         <div className='g-5 col-12 col-md-6 col-lg-4'>
             <div className="card" style={{ width: "18rem" }}>
-                <img src={image} className="card-img-top" alt="img" />
+                <img src={image} className="card-img-top image " alt="img" />
                 <div className="card-body">
                     <h5 className="card-title">Name : {name}</h5>
                     <h5 className="card-title">Price :{price}</h5>
@@ -16,7 +21,7 @@ const Store = ({ store }) => {
                     <p className="card-text">Description : {description}</p>
                 </div>
                 <div>
-                    <Link to="/checkout" className="btn btn-primary text-center d-block ">Update</Link>
+                    <button onClick={() => navigateToInventoryDetail(_id)} className='btn btn-primary d-block w-50 mx-auto mb-2'>Update</button>
                 </div>
             </div>
         </div>
