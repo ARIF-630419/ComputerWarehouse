@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 const UpdateInventory = () => {
     const { _id } = useParams();
     const [inventory, setInventory] = useState({});
+    const [quna, setQuant] = useState(0);
     useEffect(() => {
         const url = `http://localhost:5000/inventory/${_id}`;
         fetch(url)
@@ -12,15 +13,24 @@ const UpdateInventory = () => {
             .then(data => setInventory(data))
     }, [])
     const increaseQuantity = quantity => {
-        const newQuantity = quantity - 1;
-        console.log(newQuantity);
-        inventory.quantity = newQuantity;
-
+        if (quantity > 0) {
+            const newQuantity = quantity - 1;
+            setQuant(inventory.quantity = newQuantity);
+        }
     }
     const handelQuantity = event => {
         event.preventDefault();
-        const addQuantity = event.target.quantity.value;
-        console.log(addQuantity);
+
+        const addQuantity = parseInt(event.target.quantity.value);
+        if (addQuantity > 0) {
+            const oldQuantity = parseInt(inventory.quantity);
+            const newQuantity = oldQuantity + addQuantity;
+            setQuant(inventory.quantity = newQuantity);
+        }
+        else {
+            alert("Please enter a positive number geter then 0");
+        }
+        event.target.reset();
 
     }
     return (
