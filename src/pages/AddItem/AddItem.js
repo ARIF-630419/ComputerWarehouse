@@ -12,7 +12,7 @@ const AddItem = () => {
     const onSubmit = data => {
         data.email = user.email;
         console.log("data", data.email);
-        const url = `http://localhost:5000/inventory`;
+        const url = `https://fierce-cove-84666.herokuapp.com/inventory`;
         fetch(url, {
             method: 'POST',
             headers: {
@@ -36,7 +36,7 @@ const AddItem = () => {
 
 
         }
-        const Myurl = `http://localhost:5000/MyItems`;
+        const Myurl = `https://fierce-cove-84666.herokuapp.com/MyItems`;
         axios.post(Myurl, item)
             .then(response => {
                 const { data } = response;

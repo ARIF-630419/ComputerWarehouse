@@ -1,10 +1,24 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Live site link: [https://computer-warehouse-client.web.app/].
 
-## Available Scripts
+## descript
 
-In the project directory, you can run:
+
+## feature for website
+* home
+* blog
+* manage items
+* add item
+* my item
+
+## Technology use
+* React Router
+* React Bootstrap
+* Bootstrap
+* React useRef
+* React firebase hooks
+
 
 ### `npm start`
 

@@ -7,7 +7,7 @@ const UpdateInventory = () => {
     const [inventory, setInventory] = useState({});
     const [quna, setQuant] = useState(0);
     useEffect(() => {
-        const url = `http://localhost:5000/inventory/${_id}`;
+        const url = `https://fierce-cove-84666.herokuapp.com/inventory/${_id}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setInventory(data))

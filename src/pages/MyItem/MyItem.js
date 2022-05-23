@@ -12,15 +12,14 @@ const MyItem = () => {
     const navigate = useNavigate();
     useEffect(() => {
         const getItems = async () => {
-            const email = user.email;
+            const email = user?.email;
             console.log('email', email);
-            const url = `http://localhost:5000/MyItems?email=${email}`;
+            const url = `https://fierce-cove-84666.herokuapp.com/MyItems?email=${email}`;
             try {
                 const { data } = await axiosPrivate.get(url);
                 setItems(data);
             }
             catch (error) {
-                console.log(error.message);
                 if (error.response.status === 401 || error.response.status === 403) {
                     signOut(auth);
                     navigate('/login')
@@ -34,7 +33,7 @@ const MyItem = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure?');
         if (proceed) {
-            const url = `http://localhost:5000/MyItems/${id}`;
+            const url = `https://fierce-cove-84666.herokuapp.com/MyItems/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

@@ -7,7 +7,7 @@ const ManageItems = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure?');
         if (proceed) {
-            const url = `http://localhost:5000/inventory/${id}`;
+            const url = `https://fierce-cove-84666.herokuapp.com/inventory/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
