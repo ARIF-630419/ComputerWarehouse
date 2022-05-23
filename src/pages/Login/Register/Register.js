@@ -1,50 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import '../Register/Register.css';
-import SocialLogin from '../SocialLogin/SocialLogin';
 import Loading from '../../Shared/Loading/Loading';
-
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Register = () => {
-
-    const navigate = useNavigate();
-    const navigateToLogin = () => {
-        navigate('/login')
-    }
-    const handelRegister = event => {
-        event.preventDefault();
-        const email = event.target.email.value;
-        const password = event.target.password.value;
-        createUserWithEmailAndPassword(email, password);
-    }
+    const [agree, setAgree] = useState(false);
     const [
         createUserWithEmailAndPassword,
         user,
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
-    if (loading) {
-        return <Loading></Loading>
-    }
-    if (user) {
-        navigate("/home");
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
+    const navigate = useNavigate();
+
+    const navigateLogin = () => {
+        navigate('/login');
     }
 
+    if (loading || updating) {
+        return <Loading></Loading>
+    }
+
+    if (user) {
+        console.log('user', user);
+    }
+
+    const handleRegister = async (event) => {
+        event.preventDefault();
+        const name = event.target.name.value;
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+        // const agree = event.target.terms.checked;
+
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({ displayName: name });
+        console.log('Updated profile');
+        navigate('/home');
+    }
     return (
-        <div className='form-container'>
-            <h2 className=' text-primary text-center my-3'>Please Register</h2>
-            <div className='register-container'>
-                <form onSubmit={handelRegister}>
-                    <input type="email" name="email" placeholder='Your email' required />
-                    <input type="password" name="password" placeholder='Your password' required />
-                    <input type="password" name="Confirm Password" placeholder='confirm password' required />
-                    <button className='bg-info w-50 mx-auto d-block'>Register</button>
-                </form>
-                <p>Already have an account? <Link to="/login" className='text-primary pe-auto text-decoration-none' onClick={navigateToLogin}>Please Login</Link></p>
-                <SocialLogin></SocialLogin>
-            </div>
+        <div className='register-form'>
+            <h2 style={{ textAlign: 'center' }}>Please Register</h2>
+            <form onSubmit={handleRegister}>
+                <input type="text" name="name" id="name" placeholder='Your Name' />
+
+                <input type="email" name="email" id="email" placeholder='Email Address' required />
+
+                <input type="password" name="password" id="password" placeholder='Password' required />
+                <input onClick={() => setAgree(!agree)} type="checkbox" name="terms" id="terms" />
+                <label className={`ps-2 ${agree ? '' : 'text-danger'}`} htmlFor="terms">Accept Computer Warehouse Terms and Conditions</label>
+                <input
+                    disabled={!agree}
+                    className='w-50 mx-auto btn btn-primary mt-2'
+                    type="submit"
+                    value="Register" />
+            </form>
+            <p>Already have an account? <Link to="/login" className='text-primary pe-auto text-decoration-none' onClick={navigateLogin}>Please Login</Link> </p>
+            <SocialLogin></SocialLogin>
         </div>
     );
 };

@@ -1,18 +1,15 @@
-.form-container {
+.register-form {
     margin: 0 auto;
     width: 50%;
 }
 
-.register-container input {
+.register-form input:not([type=checkbox]) {
     display: block;
-    padding: 15px;
-    margin-bottom: 20px;
     width: 100%;
-    border-radius: 20px;
-}
-
-.register-container button {
-    width: 100%;
-    border: none;
-    padding: 10px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    padding-left: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
 }

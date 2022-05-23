@@ -1,9 +1,12 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../../src/firebase.init';
 
 const AddItem = () => {
     const { register, handleSubmit } = useForm();
-
+    const [user] = useAuthState(auth);
+    console.log("user", user);
     const onSubmit = data => {
         const url = `http://localhost:5000/inventory`;
         fetch(url, {
