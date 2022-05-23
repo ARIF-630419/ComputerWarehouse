@@ -26,7 +26,7 @@ const AddItem = () => {
             })
 
         const item = {
-            email: user.email,
+            email: user?.email,
             name: data.name,
             description: data.description,
             price: data.price,
@@ -51,7 +51,7 @@ const AddItem = () => {
         <div className='w-50 mx-auto'>
             <h2 className='m-3'>Please add a Item</h2>
             <form className='d-flex flex-column' onSubmit={handleSubmit(onSubmit)}>
-                <input className='mb-2' placeholder='Email' type="email" readOnly disabled value={user.email} {...register("email")} />
+                <input className='mb-2' placeholder='Email' type="email" readOnly disabled value={user?.email} {...register("email")} />
                 <input className='mb-2' placeholder='Name' type="text" {...register("name", { required: true, maxLength: 20 })} />
                 <textarea className='mb-2' placeholder='Description' {...register("description")} />
                 <input className='mb-2' placeholder='Price' type="number" {...register("price")} />
