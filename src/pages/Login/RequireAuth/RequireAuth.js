@@ -1,5 +1,4 @@
 import React from 'react';
-import { ToastContainer } from 'react-bootstrap';
 import { useAuthState, useSendEmailVerification } from 'react-firebase-hooks/auth';
 import { Navigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -31,7 +30,6 @@ const RequireAuth = ({ children }) => {
             >
                 Send Verification Email Again
             </button>
-            <ToastContainer></ToastContainer>
         </div>
     }
 

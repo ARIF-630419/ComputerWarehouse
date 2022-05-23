@@ -11,6 +11,7 @@ import UpdateInventory from './pages/UpdataInventory/UpdateInventory';
 import ManageItems from './pages/ManageItems/ManageItems';
 import AddItem from './pages/AddItem/AddItem';
 import MyItem from './pages/MyItem/MyItem';
+import { ToastContainer } from 'react-bootstrap';
 function App() {
   return (
     <div>
@@ -43,6 +44,7 @@ function App() {
         <Route path='/register' element={<Register></Register>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }

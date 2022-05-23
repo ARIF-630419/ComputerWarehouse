@@ -2,12 +2,16 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../src/firebase.init';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const AddItem = () => {
     const { register, handleSubmit } = useForm();
     const [user] = useAuthState(auth);
     console.log("user", user);
     const onSubmit = data => {
+        data.email = user.email;
+        console.log("data", data.email);
         const url = `http://localhost:5000/inventory`;
         fetch(url, {
             method: 'POST',
@@ -20,12 +24,34 @@ const AddItem = () => {
             .then(result => {
                 console.log(result);
             })
+
+        const item = {
+            email: user.email,
+            name: data.name,
+            description: data.description,
+            price: data.price,
+            quantity: data.quantity,
+            supplierName: data.supplierName,
+            image: data.image
+
+
+        }
+        const Myurl = `http://localhost:5000/MyItems`;
+        axios.post(Myurl, item)
+            .then(response => {
+                const { data } = response;
+                if (data.insertedId) {
+                    toast("Your item is store");
+                }
+            })
+
     };
 
     return (
         <div className='w-50 mx-auto'>
             <h2 className='m-3'>Please add a Item</h2>
             <form className='d-flex flex-column' onSubmit={handleSubmit(onSubmit)}>
+                <input className='mb-2' placeholder='Email' type="email" readOnly disabled value={user.email} {...register("email")} />
                 <input className='mb-2' placeholder='Name' type="text" {...register("name", { required: true, maxLength: 20 })} />
                 <textarea className='mb-2' placeholder='Description' {...register("description")} />
                 <input className='mb-2' placeholder='Price' type="number" {...register("price")} />
