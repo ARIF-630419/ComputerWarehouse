@@ -14,6 +14,7 @@ const MyItem = () => {
             console.log('email', email);
             const url = `http://localhost:5000/MyItems?email=${email}`;
             const { data } = await axiosPrivate.get(url);
+            console.log("data", data);
             setItems(data);
 
         }
@@ -23,7 +24,7 @@ const MyItem = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure?');
         if (proceed) {
-            const url = `http://localhost:5000/inventory/${id}`;
+            const url = `http://localhost:5000/MyItems/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
