@@ -18,9 +18,6 @@ Storage is frequently used to describe devices that connect to a computer -- eit
 * Bootstrap
 * React useRef
 * React firebase hooks
-* Express.js
-* MongoDB
-
 
 ### `npm start`
 
