@@ -3,14 +3,14 @@
 Live site link: [https://computer-warehouse-client.web.app/].
 
 ## descript
-
+Storage is frequently used to describe devices that connect to a computer -- either directly or over a network -- and that support the transfer of data through input/output (I/O) operations.
 
 ## feature for website
-* home
-* blog
-* manage items
-* add item
-* my item
+* If the user is logged in, Navbar will show some menus. These are Manage Item, Add Item, Home, Blogs, and My Items.
+* If the user is not logged in, Navbar will show some menus. These are Home and Blogs.
+* The user can delete any item by going to manage item menu.
+* The user add any item to the add item menu.
+* When users go to my items menu, they will be able to see all the added items.
 
 ## Technology use
 * React Router
@@ -18,6 +18,8 @@ Live site link: [https://computer-warehouse-client.web.app/].
 * Bootstrap
 * React useRef
 * React firebase hooks
+* Express.js
+* MongoDB
 
 
 ### `npm start`
